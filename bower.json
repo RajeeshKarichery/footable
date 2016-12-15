@@ -1,0 +1,9 @@
+{
+  "name": "my-demo-automate-project",
+  "dependencies": {
+    "footable": "3.1.2",
+    "jquery": "2.2.4",
+    "bootstrap": "3.3.6",
+    "moment": "2.10.3"
+  }
+}
