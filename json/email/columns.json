@@ -1,0 +1,8 @@
+[
+  { "data": "id", "title": "ID" },
+  { "data": "firstName","title": "First Name" },
+  { "data": "lastName","title": "Last Name" },
+  { "data": "jobTitle","title": "JobTitle"},
+  { "data": "dob","title" : "DOB"},
+  { "data": "view","title" : "View"}
+]

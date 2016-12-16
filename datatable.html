@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+
+<!--
+<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/
+>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" />
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+		
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap.min.js"></script>		
+
+-->
+
+<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css" />
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" />
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+		/*var dCols;
+		$.ajax({
+				url: "/json/columns.json", 
+				success: function(result){
+					dCols = result;	
+					//alert(dCols);
+         		}
+         });
+		*/
+
+		$.ajax('/json/columns.json')
+        .done(maketable)
+
+
+        function maketable(dCols){
+
+        	$('#example').DataTable({
+    		 "columns": dCols
+    		,    	    	
+	    	"ajax": {
+	    		 "url": "/json/mydata.json",	
+	    		 "dataSrc": function ( json ) {
+	    		 	return json;
+	    		 }
+	    	}
+
+	    	,
+
+	    	"fnDrawCallback": function ( oSettings ) {
+               // call add button on page load 
+          		addButton();
+            }
+
+
+	    	/*,
+
+	    	responsive: {
+			            details: {
+			                display: $.fn.dataTable.Responsive.display.modal( {
+			                    header: function ( row ) {
+			                        var data = row.data();
+			                        return 'Details for '+data[0]+' '+data[1];
+			                    }
+			                } ),
+			                renderer: function ( api, rowIdx, columns ) {
+			                    var data = $.map( columns, function ( col, i ) {
+			                        return '<tr>'+
+			                                '<td>'+col.title+':'+'</td> '+
+			                                '<td>'+col.data+'</td>'+
+			                            '</tr>';
+			                    } ).join('');
+			 
+			                    return $('<table/>').append( data );
+			                }
+			            }
+			        }	
+				*/
+
+
+
+	    	}
+
+
+
+	    	);
+        }//maketable close
+
+
+
+
+        var addButton = function(){
+            $('#example tr td').each(function(){
+            	if($(this).index() == 5){
+            		$(this).html($('<button type="button" class="btn btn-primary btn-xs"  onclick="$(this).parent().html(1);" >View</button>' ));
+            	}
+				
+            });
+			
+        }
+
+
+
+
+
+
+    /*	*/
+	} );
+
+</script>
+
+</head>
+<body>
+<h1>Testing</h1>
+<p></p>
+
+
+<table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+        <thead>
+          
+        </thead>
+        <tbody>
+          
+        </tbody>
+    </table>
+
+
+
+
+
+</body>
+</html>
